@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>関東 金曜1泊の宿さがし｜1部屋総額で比べる</title>
+  <meta name="description" content="関東圏（東京・神奈川・千葉・埼玉・茨城・栃木・群馬・静岡東部）で、金曜1泊・大人最大4名・1部屋あたり総額で泊まれる宿を、空室を確認できたものだけ一覧にします。">
+  <link rel="stylesheet" href="./assets/app.css">
+  <script type="module" src="./assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">確認済みの宿へ移動</a>
+
+  <header class="page-header">
+    <p class="page-header__eyebrow">kanto-stay-search</p>
+    <h1 class="page-header__title">関東 金曜1泊の宿さがし</h1>
+    <p class="page-header__lead">
+      大人最大4名・1部屋。<strong>「1部屋あたりの総額（税込）」</strong>で比べます。
+      実際に予約ページで空室を確認できた宿だけを表示します。
+    </p>
+  </header>
+
+  <main class="page-main">
+    <section class="panel conditions" aria-labelledby="conditions-title">
+      <h2 id="conditions-title" class="panel__title">条件</h2>
+      <form id="condition-form" class="conditions__form" autocomplete="off">
+        <div class="field">
+          <label class="field__label" for="date-input">チェックイン日（1泊）</label>
+          <div class="field__control">
+            <input class="input" type="date" id="date-input" name="checkin" required>
+            <span class="field__hint" id="weekday-note"></span>
+          </div>
+          <div class="quick-dates" id="quick-dates" role="group" aria-label="直近の金曜日を選ぶ"></div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="adults-select">大人（1部屋）</label>
+          <select class="input" id="adults-select" name="adults">
+            <option value="1">1名</option>
+            <option value="2">2名</option>
+            <option value="3">3名</option>
+            <option value="4" selected>4名</option>
+          </select>
+          <p class="field__hint">確認したときの人数と同じ条件の宿だけを表示します（4名で確認した宿を2名の料金として表示することはしません）。</p>
+        </div>
+
+        <fieldset class="field field--budget">
+          <legend class="field__label">1部屋総額の上限（税込）</legend>
+          <div class="field__control field__control--row">
+            <input class="input input--number" type="number" id="budget-input" inputmode="numeric" min="0" step="500" value="10000" aria-describedby="budget-hint">
+            <span aria-hidden="true">円</span>
+            <label class="check"><input type="checkbox" id="budget-unlimited"> 上限なし</label>
+          </div>
+          <p class="field__hint" id="budget-hint">1人あたりの料金ではなく、1部屋・1泊・税込の合計で絞り込みます。</p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">エリア</legend>
+          <div class="areas" id="area-list"></div>
+          <button type="button" class="link-button" id="area-all-button">すべて選択</button>
+        </fieldset>
+
+        <div class="conditions__actions">
+          <button type="button" class="button button--secondary" id="reset-button">条件を初期値に戻す</button>
+          <p class="field__hint field__hint--error" id="condition-error" role="alert" hidden></p>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel results" id="results" aria-labelledby="results-title">
+      <div class="results__head">
+        <h2 id="results-title" class="panel__title">確認済みの宿</h2>
+        <p class="results__summary" id="results-summary" aria-live="polite">読み込み中です。</p>
+      </div>
+      <p class="notice">
+        <strong>価格と空室は、各宿に表示している「確認日時」時点のものです。</strong>
+        現在は変わっている可能性があります。予約の前に、必ず予約ページで空室・価格・キャンセル条件を確認してください。
+      </p>
+      <div class="alert" id="load-error" role="alert" hidden></div>
+      <div class="results__list" id="results-list"></div>
+      <div class="results__empty" id="results-empty" hidden></div>
+      <p class="results__meta" id="data-meta"></p>
+    </section>
+
+    <section class="panel handoff" aria-labelledby="handoff-title">
+      <h2 id="handoff-title" class="panel__title">この条件で各サイトを調べる</h2>
+      <p>
+        このアプリは確認済みの宿しか表示しないため、載っていない宿は空室がないとは限りません。
+        最新の空室は、次のサイトで検索してください。
+      </p>
+      <p class="handoff__condition" id="handoff-condition"></p>
+      <ul class="handoff__list" id="handoff-list"></ul>
+      <ul class="handoff__legend">
+        <li><span class="tag tag--verified">条件を引き継ぎ（確認済み）</span>URLに検索条件が入って開きます。開発時に実際に開いて確かめたリンクです。</li>
+        <li><span class="tag tag--unverified">条件の引き継ぎは未検証</span>URLに検索条件を入れて開きますが、引き継がれるかどうかは確かめられていません。開いた先で日付と人数を確認してください。</li>
+        <li><span class="tag tag--manual">条件は手入力</span>検索条件は引き継ぎません。サイト内で日付・人数を入力してください。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      金額はすべて「1部屋・1泊・税込の合計」です（1人あたりの料金ではありません）。
+      未確認の宿は表示しません。確認の方法とこのアプリの限界は、同梱の README.md に書いてあります。
+    </p>
+  </footer>
+
+  <noscript>
+    <p class="alert">このアプリを使うには、ブラウザの JavaScript を有効にしてください。</p>
+  </noscript>
+</body>
+</html>

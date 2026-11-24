@@ -1,0 +1,15 @@
+{
+  "name": "kanto-stay-search",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "関東圏の金曜1泊・大人最大4名・1部屋総額で泊まれる宿を、空室を確認できたものだけ一覧にする静的Webアプリ",
+  "scripts": {
+    "test": "node --test tests/",
+    "validate": "node tools/validate-data.js",
+    "serve": "python3 -m http.server 8080 --directory site"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

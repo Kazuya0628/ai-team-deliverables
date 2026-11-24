@@ -1,0 +1,48 @@
+{
+  "updatedAt": "2026-11-24T19:21:00+09:00",
+  "sources": [
+    {
+      "id": "rakuten-travel",
+      "label": "楽天トラベル",
+      "homeUrl": "https://travel.rakuten.co.jp/",
+      "areaIds": [],
+      "searchUrlTemplate": null,
+      "note": "検索条件をURLで渡す形式は未確認のため、トップページを開きます。サイト内で日付・人数・地域を入力してください。"
+    },
+    {
+      "id": "jalan",
+      "label": "じゃらんnet",
+      "homeUrl": "https://www.jalan.net/",
+      "areaIds": [],
+      "searchUrlTemplate": null,
+      "note": "検索条件をURLで渡す形式は未確認のため、トップページを開きます。サイト内で日付・人数・地域を入力してください。"
+    },
+    {
+      "id": "booking-com",
+      "label": "Booking.com",
+      "homeUrl": "https://www.booking.com/",
+      "areaIds": [],
+      "searchUrlStatus": "unverified",
+      "searchUrlTemplate": "https://www.booking.com/searchresults.ja.html?ss={q}&checkin={checkin}&checkout={checkout}&group_adults={adults}&no_rooms={rooms}&group_children=0",
+      "areaQueries": {
+        "tokyo": "東京",
+        "kanagawa": "神奈川",
+        "chiba": "千葉",
+        "saitama": "埼玉",
+        "ibaraki": "茨城",
+        "tochigi": "栃木",
+        "gunma": "群馬",
+        "shizuoka-east": "熱海"
+      },
+      "note": "2026-11-24 に自動取得でこのURLを開いたところ、取得できたページには日付・人数が反映されていませんでした。ブラウザで引き継がれるかは未確認です。目的地は各エリアの地名（静岡東部は「熱海」）で検索します。"
+    },
+    {
+      "id": "agoda",
+      "label": "Agoda",
+      "homeUrl": "https://www.agoda.com/ja-jp/",
+      "areaIds": [],
+      "searchUrlTemplate": null,
+      "note": "検索条件をURLで渡す形式は未確認のため、トップページを開きます。サイト内で目的地・日付・人数を入力してください。"
+    }
+  ]
+}
