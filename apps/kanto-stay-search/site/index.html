@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>関東 金曜1泊の宿さがし｜1部屋総額で比べる</title>
-  <meta name="description" content="関東圏（東京・神奈川・千葉・埼玉・茨城・栃木・群馬・静岡東部）で、金曜1泊・大人最大4名・1部屋あたり総額で泊まれる宿を、空室を確認できたものだけ一覧にします。">
+  <meta name="description" content="関東圏（東京・神奈川・千葉・埼玉・茨城・栃木・群馬・静岡東部）で、金曜1泊・大人4名・1部屋あたり総額10,000円以下で泊まれる宿を、空室を確認できたものだけ一覧にします。">
   <link rel="stylesheet" href="./assets/app.css">
   <script type="module" src="./assets/app.js"></script>
 </head>
@@ -16,7 +16,7 @@
     <p class="page-header__eyebrow">kanto-stay-search</p>
     <h1 class="page-header__title">関東 金曜1泊の宿さがし</h1>
     <p class="page-header__lead">
-      大人最大4名・1部屋。<strong>「1部屋あたりの総額（税込）」</strong>で比べます。
+      大人4名・1部屋。<strong>「1部屋あたりの総額（税込）」</strong>で比べます。
       実際に予約ページで空室を確認できた宿だけを表示します。
     </p>
   </header>
@@ -25,7 +25,7 @@
     <section class="panel conditions" aria-labelledby="conditions-title">
       <h2 id="conditions-title" class="panel__title">条件</h2>
       <form id="condition-form" class="conditions__form" autocomplete="off">
-        <div class="field">
+        <div class="field field--date">
           <label class="field__label" for="date-input">チェックイン日（1泊）</label>
           <div class="field__control">
             <input class="input" type="date" id="date-input" name="checkin" required>
@@ -34,26 +34,11 @@
           <div class="quick-dates" id="quick-dates" role="group" aria-label="直近の金曜日を選ぶ"></div>
         </div>
 
-        <div class="field">
-          <label class="field__label" for="adults-select">大人（1部屋）</label>
-          <select class="input" id="adults-select" name="adults">
-            <option value="1">1名</option>
-            <option value="2">2名</option>
-            <option value="3">3名</option>
-            <option value="4" selected>4名</option>
-          </select>
-          <p class="field__hint">確認したときの人数と同じ条件の宿だけを表示します（4名で確認した宿を2名の料金として表示することはしません）。</p>
+        <div class="field field--fixed">
+          <p class="field__label" id="fixed-conditions-label">固定条件</p>
+          <p class="fixed-conditions" id="fixed-conditions" aria-labelledby="fixed-conditions-label">大人4名・1部屋・1泊・1部屋総額¥10,000以下（税込）</p>
+          <p class="field__hint">人数・部屋数・予算は変更できません。この条件で予約ページの空室を確認できた宿だけを表示します。</p>
         </div>
-
-        <fieldset class="field field--budget">
-          <legend class="field__label">1部屋総額の上限（税込）</legend>
-          <div class="field__control field__control--row">
-            <input class="input input--number" type="number" id="budget-input" inputmode="numeric" min="0" step="500" value="10000" aria-describedby="budget-hint">
-            <span aria-hidden="true">円</span>
-            <label class="check"><input type="checkbox" id="budget-unlimited"> 上限なし</label>
-          </div>
-          <p class="field__hint" id="budget-hint">1人あたりの料金ではなく、1部屋・1泊・税込の合計で絞り込みます。</p>
-        </fieldset>
 
         <fieldset class="field">
           <legend class="field__label">エリア</legend>

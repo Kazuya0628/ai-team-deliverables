@@ -121,20 +121,15 @@ function updateDateNote(dateStr) {
 function fillForm(cond) {
   byId('date-input').value = cond.checkin;
   byId('date-input').min = todayJst(state.now);
-  byId('adults-select').value = String(cond.adults);
-  byId('budget-unlimited').checked = cond.budget === null;
-  byId('budget-input').value = cond.budget === null ? '' : String(cond.budget);
-  byId('budget-input').disabled = cond.budget === null;
   for (const checkbox of areaCheckboxes()) checkbox.checked = cond.areaIds.includes(checkbox.value);
   updateQuickDates(cond.checkin);
   updateDateNote(cond.checkin);
 }
 
+/** フォームから検索条件を読む。人数・部屋数・予算はフォームにはなく、固定（normalizeConditions が補う） */
 function readForm() {
   return {
     checkin: byId('date-input').value,
-    adults: byId('adults-select').value,
-    budget: byId('budget-unlimited').checked ? null : byId('budget-input').value,
     areaIds: areaCheckboxes()
       .filter((checkbox) => checkbox.checked)
       .map((checkbox) => checkbox.value),
@@ -148,7 +143,6 @@ function showConditionError(messages) {
 }
 
 function onConditionChange() {
-  byId('budget-input').disabled = byId('budget-unlimited').checked;
   const result = normalizeConditions(readForm());
   if (!result.ok) {
     showConditionError(result.errors);
@@ -162,15 +156,12 @@ function onConditionChange() {
   render();
 }
 
-/** URLのクエリパラメータから検索条件を読む（指定がない項目は含めない） */
+/** URLのクエリパラメータから検索条件を読む（指定がない項目は含めない）。使うのは checkin と areas だけ（人数・予算は固定） */
 function readConditionsFromLocation() {
   const params = new URLSearchParams(window.location.search);
   const picked = {};
   const checkin = params.get('checkin');
   if (checkin !== null) picked.checkin = checkin;
-  const adults = params.get('adults');
-  if (adults !== null) picked.adults = adults;
-  if (params.has('budget')) picked.budget = params.get('budget') || 'none';
   const areas = params.get('areas');
   if (areas !== null) picked.areaIds = areas.split(',');
   return picked;
@@ -180,8 +171,6 @@ function readConditionsFromLocation() {
 function writeConditionsToLocation(cond) {
   const params = new URLSearchParams();
   params.set('checkin', cond.checkin);
-  params.set('adults', String(cond.adults));
-  params.set('budget', cond.budget === null ? 'none' : String(cond.budget));
   if (cond.areaIds.length !== AREA_IDS.length) params.set('areas', cond.areaIds.join(','));
   const query = params.toString();
   try {
@@ -215,12 +204,19 @@ function bindEvents() {
 
 function render() {
   state.now = new Date();
+  renderFixedCondition(state.cond);
   renderResults(state.cond);
   renderHandoff(state.cond);
 }
 
-function budgetLabel(budget) {
-  return budget === null ? '上限なし' : `${formatYen(budget)}以内`;
+/** 変更できない固定の条件（人数・部屋数・泊数・予算）の表示文言。条件パネル・検索結果・外部サイトへの案内で使い回す */
+function fixedConditionLabel(cond) {
+  return `大人${cond.adults}名・${cond.rooms}部屋・${cond.nights}泊・1部屋総額${formatYen(cond.budget)}以下（税込）`;
+}
+
+/** 条件パネルに固定条件を出す（index.html に書いた文言と同じ内容。値は条件から作る） */
+function renderFixedCondition(cond) {
+  byId('fixed-conditions').textContent = fixedConditionLabel(cond);
 }
 
 function emptyMessages() {
@@ -235,7 +231,7 @@ function emptyMessages() {
   }
   return [
     'この条件に合う確認済みの宿はありません。',
-    '別の日付・人数で確認された宿は表示していません（条件の違う料金を見せないためです）。条件を変えるか、下のサイトで最新の空室を調べてください。',
+    '別の日付・人数で確認された宿は表示していません（条件の違う料金を見せないためです）。日付やエリアを変えるか、下のサイトで最新の空室を調べてください。',
   ];
 }
 
@@ -247,7 +243,7 @@ function renderResults(cond) {
 
   const today = todayJst(state.now);
   const items = state.loadError ? [] : selectStays(state.entries, cond, { today });
-  byId('results-summary').textContent = `${formatJpDate(cond.checkin)}チェックイン・1泊・大人${cond.adults}名・1部屋・1部屋総額${budgetLabel(cond.budget)}：確認済みの宿 ${items.length}件`;
+  byId('results-summary').textContent = `${formatJpDate(cond.checkin)}チェックイン・${fixedConditionLabel(cond)}：確認済みの宿 ${items.length}件`;
 
   for (const entry of items) list.append(renderCard(entry));
 
@@ -318,7 +314,7 @@ function renderLoadError(error) {
 
 function renderHandoff(cond) {
   byId('handoff-condition').textContent =
-    `検索条件：${formatJpDate(cond.checkin)}チェックイン・1泊・大人${cond.adults}名・1部屋・1部屋総額${budgetLabel(cond.budget)}`;
+    `検索条件：${formatJpDate(cond.checkin)}チェックイン・${fixedConditionLabel(cond)}`;
 
   const list = byId('handoff-list');
   list.replaceChildren();
