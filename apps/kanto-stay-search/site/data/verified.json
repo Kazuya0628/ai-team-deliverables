@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "priceBasis": "perRoomStayTaxIncluded",
-  "updatedAt": "2026-11-24T21:46:00+09:00",
+  "updatedAt": "2026-11-24T22:12:00+09:00",
   "entries": [
     {
       "id": "retrospect-stay-yokohama-20261127",
@@ -1111,13 +1111,40 @@
       "evidence": "Booking.comの宿ページに「料金 ￥9,790 税・手数料込」「人数: 4」と表示され、大人4名・1部屋の税込総額を確認。料金表に「別 市税」の表示あり"
     },
     {
-      "id": "nice-hostel-kameari-20270205",
-      "hotelName": "ナイスホステル亀有",
+      "id": "mason-guest-house-suite-102-20270101",
+      "hotelName": "メゾン102号 Mason Guest House Suite 102",
+      "areaId": "chiba",
+      "location": "千葉県松戸市",
+      "roomType": "ダブルまたはツインルーム（シングル1台、ダブル1台、布団2組）",
+      "planName": "Black Fridayセール 30%OFF",
+      "priceTotal": 9380,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "返金不可（日程変更は可能）"
+      },
+      "conditions": {
+        "checkin": "2027-01-01",
+        "checkout": "2027-01-02",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mason-guest-house-1f-suite-102.ja.html?checkin=2027-01-01&checkout=2027-01-02&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ¥9,380 税・手数料込」と表示され、宿泊人数4名の部屋で税込総額を確認"
+    },
+    {
+      "id": "miyavi-hotel-20270101",
+      "hotelName": "MIYAVI hotel",
       "areaId": "tokyo",
-      "location": "東京都葛飾区",
-      "roomType": "スタンダード 4人部屋",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9790,
+      "location": "東京都台東区",
+      "roomType": "ダブルルーム 専用バスルーム付（34㎡、布団4組）",
+      "planName": "Black Fridayセール 60%OFF",
+      "priceTotal": 14776,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
@@ -1127,78 +1154,618 @@
         "text": "返金不可"
       },
       "conditions": {
-        "checkin": "2027-02-05",
-        "checkout": "2027-02-06",
+        "checkin": "2027-01-01",
+        "checkout": "2027-01-02",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/naisuhosuterugui-you.ja.html?checkin=2027-02-05&checkout=2027-02-06&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,790 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認。料金表に「別 市税」の表示あり"
+      "planUrl": "https://www.booking.com/hotel/jp/miyavi.ja.html?checkin=2027-01-01&checkout=2027-01-02&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「現在の料金 ¥11,776」「＋税・手数料（¥3,000）」と表示され、大人4名・1部屋の税込総額14,776円を確認"
     },
     {
-      "id": "hotel-is-yokohama-20270205",
-      "hotelName": "HOTEL I/S",
+      "id": "hotel-mr-tomo-atami-401-20270108",
+      "hotelName": "Hotel MR TOMO ATAMI 401",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台、専用キッチン）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "2026年12月25日までキャンセル無料（2026年12月23日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2027-01-08",
+        "checkout": "2027-01-09",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-401.ja.html?checkin=2027-01-08&checkout=2027-01-09&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「¥9,072」「＋税・手数料（¥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "jun-resort-kujukuri-20270108",
+      "hotelName": "Jun Resort 九十九里",
+      "areaId": "chiba",
+      "location": "千葉県九十九里町",
+      "roomType": "3ベッドルーム ハウス",
+      "planName": "（プラン名なし）",
+      "priceTotal": 9025,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "2026年12月25日までキャンセル無料（2026年12月23日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2027-01-08",
+        "checkout": "2027-01-09",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/jun-resort-jiu-shi-jiu-li.ja.html?checkin=2027-01-08&checkout=2027-01-09&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ¥9,025 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-401-20270115",
+      "hotelName": "Hotel MR TOMO ATAMI 401",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台、専用キッチン）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "2027年1月1日までキャンセル無料（2026年12月30日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2027-01-15",
+        "checkout": "2027-01-16",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-401.ja.html?checkin=2027-01-15&checkout=2027-01-16&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「¥9,072」「＋税・手数料（¥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "tokyo-sa-ryokan-20270122",
+      "hotelName": "東京SA旅館",
+      "areaId": "tokyo",
+      "location": "東京都台東区",
+      "roomType": "4人部屋 共用バスルーム（二段ベッド2台）",
+      "planName": "Black Fridayセール 40%OFF",
+      "priceTotal": 11135,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "返金不可"
+      },
+      "conditions": {
+        "checkin": "2027-01-22",
+        "checkout": "2027-01-23",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/tokyo-sa-ryokan.ja.html?checkin=2027-01-22&checkout=2027-01-23&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ¥11,135 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-401-20270122",
+      "hotelName": "Hotel MR TOMO ATAMI 401",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台、専用キッチン）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "2027年1月8日までキャンセル無料（2027年1月6日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2027-01-22",
+        "checkout": "2027-01-23",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-401.ja.html?checkin=2027-01-22&checkout=2027-01-23&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「¥9,072」「＋税・手数料（¥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "tokyo-sa-ryokan-20270129",
+      "hotelName": "東京SA旅館",
+      "areaId": "tokyo",
+      "location": "東京都台東区",
+      "roomType": "4人部屋 共用バスルーム（二段ベッド2台）",
+      "planName": "Black Fridayセール 40%OFF",
+      "priceTotal": 11135,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "返金不可"
+      },
+      "conditions": {
+        "checkin": "2027-01-29",
+        "checkout": "2027-01-30",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/tokyo-sa-ryokan.ja.html?checkin=2027-01-29&checkout=2027-01-30&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ¥11,135 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-401-20270129",
+      "hotelName": "Hotel MR TOMO ATAMI 401",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台、専用キッチン）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "未確認（料金表に食事の記載なし）"
+      },
+      "cancellation": {
+        "text": "2027年1月15日までキャンセル無料（2027年1月13日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2027-01-29",
+        "checkout": "2027-01-30",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-401.ja.html?checkin=2027-01-29&checkout=2027-01-30&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「¥9,072」「＋税・手数料（¥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "hotel-mystays-yokohama-20270129",
+      "hotelName": "ホテルマイステイズ横浜",
       "areaId": "kanagawa",
       "location": "神奈川県横浜市中区",
-      "roomType": "4人部屋 バスタブ付",
+      "roomType": "スタンダード 4人部屋 禁煙（シングルベッド3台・ソファベッド1台）",
+      "planName": "パートナー・オファー",
+      "priceTotal": 14959,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし（朝食は別途1,500円で追加可）"
+      },
+      "cancellation": {
+        "text": "2027年1月1日までキャンセル無料（変更不可）"
+      },
+      "conditions": {
+        "checkin": "2027-01-29",
+        "checkout": "2027-01-30",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mystays-yokohama.ja.html?checkin=2027-01-29&checkout=2027-01-30&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:06:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ¥14,959 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認（パートナー・オファー）"
+    },
+    {
+      "id": "retrospect-stay-yokohama-vacation-03277v-20261204",
+      "hotelName": "RetroSpect Stay Yokohama - Vacation STAY 03277v",
+      "areaId": "kanagawa",
+      "location": "神奈川県横浜市中区",
+      "roomType": "スタジオ（シングルベッド4台）",
       "planName": "（プラン名なし）",
-      "priceTotal": 9900,
+      "priceTotal": 12135,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
         "label": "食事なし"
       },
       "cancellation": {
-        "text": "2027年2月2日までキャンセル無料（以降は宿泊料金の100%）"
+        "text": "2026年11月29日までキャンセル無料"
       },
       "conditions": {
-        "checkin": "2027-02-05",
-        "checkout": "2027-02-06",
+        "checkin": "2026-12-04",
+        "checkout": "2026-12-05",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/hoteruaiesu.ja.html?checkin=2027-02-05&checkout=2027-02-06&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,900 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認"
+      "planUrl": "https://www.booking.com/hotel/jp/retrospect-stay-yokohama-vacation-stay-03277v.ja.html?checkin=2026-12-04&checkout=2026-12-05&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥12,135 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
     },
     {
-      "id": "hotel-livemax-chiba-ekimae-20270212",
-      "hotelName": "ホテルリブマックス千葉駅前",
-      "areaId": "chiba",
-      "location": "千葉県千葉市",
-      "roomType": "ツインルーム 禁煙",
+      "id": "hotel-luana-ikebukuro-higashinagasaki-20261204",
+      "hotelName": "HOTEL LUANA in IKEBUKURO HIGASHINAGASAKI",
+      "areaId": "tokyo",
+      "location": "東京都豊島区",
+      "roomType": "スタンダード ファミリールーム（ダブルベッド2台・ソファベッド1台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 12500,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "返金不可"
+      },
+      "conditions": {
+        "checkin": "2026-12-04",
+        "checkout": "2026-12-05",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/luana-in-ikebukuro-higashinagasaki.ja.html?checkin=2026-12-04&checkout=2026-12-05&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表の本体料金＋税・手数料（￥3,000）の合算で、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "rhodes-otsuka-hotel-20261204",
+      "hotelName": "Rhodes Otsuka Hotel",
+      "areaId": "tokyo",
+      "location": "東京都豊島区",
+      "roomType": "4人部屋（二段ベッド2台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14000,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "2026年12月2日までキャンセル無料（2026年11月30日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2026-12-04",
+        "checkout": "2026-12-05",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/rhodes-otsuka-dong-jing.ja.html?checkin=2026-12-04&checkout=2026-12-05&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥14,000 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-401-20261204",
+      "hotelName": "Hotel MR TOMO ATAMI 401",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台、専用キッチン）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "返金不可（2026年12月1日まで1回のみ日程変更可能）"
+      },
+      "conditions": {
+        "checkin": "2026-12-04",
+        "checkout": "2026-12-05",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-401.ja.html?checkin=2026-12-04&checkout=2026-12-05&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥9,072 ＋税・手数料（￥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "ogi-ohashi-apartment-20261211",
+      "hotelName": "扇大橋アパートメント",
+      "areaId": "tokyo",
+      "location": "東京都足立区",
+      "roomType": "アパートメント テラス付（シングルベッド4台・ソファベッド1台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 10569,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "一部返金可（キャンセル時は宿泊料金の50%を請求）"
+      },
+      "conditions": {
+        "checkin": "2026-12-11",
+        "checkout": "2026-12-12",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/ogi-ohashi-apartment.ja.html?checkin=2026-12-11&checkout=2026-12-12&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥4,608 ＋税・手数料（￥5,961）」と表示され、大人4名・1部屋の税込総額10,569円を確認（税・手数料には清掃料金5,500円を含む）。別途、損害補償用デポジット¥20,000の表示あり"
+    },
+    {
+      "id": "retrospect-stay-yokohama-vacation-03277v-20261211",
+      "hotelName": "RetroSpect Stay Yokohama - Vacation STAY 03277v",
+      "areaId": "kanagawa",
+      "location": "神奈川県横浜市中区",
+      "roomType": "スタジオ（シングルベッド4台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 11868,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "2026年12月6日までキャンセル無料（2026年12月4日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2026-12-11",
+        "checkout": "2026-12-12",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/retrospect-stay-yokohama-vacation-stay-03277v.ja.html?checkin=2026-12-11&checkout=2026-12-12&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥11,868 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-luana-ikebukuro-higashinagasaki-20261211",
+      "hotelName": "HOTEL LUANA in IKEBUKURO HIGASHINAGASAKI",
+      "areaId": "tokyo",
+      "location": "東京都豊島区",
+      "roomType": "スタンダード ファミリールーム（ダブルベッド2台・ソファベッド1台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 12800,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "返金不可"
+      },
+      "conditions": {
+        "checkin": "2026-12-11",
+        "checkout": "2026-12-12",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/luana-in-ikebukuro-higashinagasaki.ja.html?checkin=2026-12-11&checkout=2026-12-12&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表の本体料金＋税・手数料（￥3,000）の合算で、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-203-20261211",
+      "hotelName": "Hotel MR TOMO ATAMI 203",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "2026年11月27日までキャンセル無料"
+      },
+      "conditions": {
+        "checkin": "2026-12-11",
+        "checkout": "2026-12-12",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-203.ja.html?checkin=2026-12-11&checkout=2026-12-12&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥9,072 ＋税・手数料（￥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "retrospect-stay-yokohama-chinatown-booking-20261218",
+      "hotelName": "Retrospect Stay Yokohama Chinatown",
+      "areaId": "kanagawa",
+      "location": "神奈川県横浜市中区",
+      "roomType": "エコノミー 4人部屋 共用バスルーム",
+      "planName": "Black Fridayセール 30%OFF",
+      "priceTotal": 10515,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "返金不可（日程変更は可能）"
+      },
+      "conditions": {
+        "checkin": "2026-12-18",
+        "checkout": "2026-12-19",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/retrospect-stay-yokohama.ja.html?checkin=2026-12-18&checkout=2026-12-19&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥10,515 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "ogi-ohashi-apartment-20261218",
+      "hotelName": "扇大橋アパートメント",
+      "areaId": "tokyo",
+      "location": "東京都足立区",
+      "roomType": "アパートメント テラス付（シングルベッド4台・ソファベッド1台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 10569,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "一部返金可（キャンセル時は宿泊料金の50%を請求）"
+      },
+      "conditions": {
+        "checkin": "2026-12-18",
+        "checkout": "2026-12-19",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/ogi-ohashi-apartment.ja.html?checkin=2026-12-18&checkout=2026-12-19&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥4,608 ＋税・手数料（￥5,961）」と表示され、大人4名・1部屋の税込総額10,569円を確認（税・手数料には清掃料金5,500円を含む）。別途、損害補償用デポジット¥20,000の表示あり"
+    },
+    {
+      "id": "tokyo-sa-ryokan-20261218",
+      "hotelName": "東京SA旅館",
+      "areaId": "tokyo",
+      "location": "東京都台東区",
+      "roomType": "4人部屋 共用バスルーム（二段ベッド2台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 11790,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "返金不可"
+      },
+      "conditions": {
+        "checkin": "2026-12-18",
+        "checkout": "2026-12-19",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/tokyo-sa-ryokan.ja.html?checkin=2026-12-18&checkout=2026-12-19&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥11,790 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
+    },
+    {
+      "id": "hotel-mr-tomo-atami-203-20261218",
+      "hotelName": "Hotel MR TOMO ATAMI 203",
+      "areaId": "shizuoka-east",
+      "location": "静岡県熱海市",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 14872,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "2026年12月4日までキャンセル無料（2026年12月2日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2026-12-18",
+        "checkout": "2026-12-19",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/mr-tomo-atami-203.ja.html?checkin=2026-12-18&checkout=2026-12-19&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥9,072 ＋税・手数料（￥5,800）」と表示され、大人4名・1部屋の税込総額14,872円を確認"
+    },
+    {
+      "id": "global-cabin-yokohama-chukagai-20261225",
+      "hotelName": "グローバルキャビン横浜中華街 (ドーミーインチェーン)",
+      "areaId": "kanagawa",
+      "location": "神奈川県横浜市中区",
+      "roomType": "ForthCabin-Mixed（キャビン1室、シングルベッド4台）",
+      "planName": "（プラン名なし）",
+      "priceTotal": 11684,
+      "priceBasis": "perRoomStayTaxIncluded",
+      "meal": {
+        "code": "none",
+        "label": "食事なし"
+      },
+      "cancellation": {
+        "text": "2026年12月24日までキャンセル無料（2026年12月22日まで支払い不要）"
+      },
+      "conditions": {
+        "checkin": "2026-12-25",
+        "checkout": "2026-12-26",
+        "adults": 4,
+        "rooms": 1
+      },
+      "sourceLabel": "Booking.com",
+      "planUrl": "https://www.booking.com/hotel/jp/global-cabin-yokohama-chukagai.ja.html?checkin=2026-12-25&checkout=2026-12-26&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥11,684 税・手数料込」と表示され、大人4名・1部屋（カプセルホテルの4ベッドキャビン）の税込総額を確認"
+    },
+    {
+      "id": "hotel-livemax-shinyokohama-20261225",
+      "hotelName": "ホテルリブマックス新横浜",
+      "areaId": "kanagawa",
+      "location": "神奈川県横浜市港北区",
+      "roomType": "ツインルーム 喫煙（シングルベッド2台）",
       "planName": "パートナー・オファー",
-      "priceTotal": 9409,
+      "priceTotal": 13265,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
         "label": "未確認（パートナー・オファーの表示に食事の記載なし）"
       },
       "cancellation": {
-        "text": "返金不可（前払い・変更不可）"
+        "text": "返金不可・変更不可"
       },
       "conditions": {
-        "checkin": "2027-02-12",
-        "checkout": "2027-02-13",
+        "checkin": "2026-12-25",
+        "checkout": "2026-12-26",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/livemax-chiba-ekimae.ja.html?checkin=2027-02-12&checkout=2027-02-13&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,409 税・手数料込」「返金不可 前払い パートナー・オファー Booking.comの提携会社による提供 変更不可」と表示され税込総額を確認。ツインルーム（シングルベッド2台）だが宿ページの表で人数4名・1室の選択が可能と表示された"
+      "planUrl": "https://www.booking.com/hotel/jp/hoteruribumatukusuxin-heng-bang.ja.html?checkin=2026-12-25&checkout=2026-12-26&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥13,265 税・手数料込」「パートナー・オファー」と表示され、人数4名で1室選択できることを確認（寝具はシングルベッド2台の表示）"
     },
     {
-      "id": "nice-hostel-kameari-20270212",
-      "hotelName": "ナイスホステル亀有",
+      "id": "new-disney-asakusa-20261225",
+      "hotelName": "NEW Disney Asakusa SkyTree Airport Near Sta 5ppl",
       "areaId": "tokyo",
-      "location": "東京都葛飾区",
-      "roomType": "スタンダード 4人部屋",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9790,
+      "location": "東京都江戸川区",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド1台）",
+      "planName": "新規掲載割引 20%OFF",
+      "priceTotal": 13680,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
@@ -1208,236 +1775,74 @@
         "text": "返金不可"
       },
       "conditions": {
-        "checkin": "2027-02-12",
-        "checkout": "2027-02-13",
+        "checkin": "2026-12-25",
+        "checkout": "2026-12-26",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/naisuhosuterugui-you.ja.html?checkin=2027-02-12&checkout=2027-02-13&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,790 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認。料金表に「別 市税」の表示あり"
+      "planUrl": "https://www.booking.com/hotel/jp/new-disney-asakusa-skytree-airport-near-sta-5ppl.ja.html?checkin=2026-12-25&checkout=2026-12-26&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥13,680 税・手数料込」と表示され税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約。寝具はダブルベッド1台の表示（宿名に5pplとあり人数4で選択可）"
     },
     {
-      "id": "hotel-is-yokohama-20270212",
-      "hotelName": "HOTEL I/S",
-      "areaId": "kanagawa",
-      "location": "神奈川県横浜市中区",
-      "roomType": "クラシック 4人部屋",
+      "id": "wise-park-mukojima-20261225",
+      "hotelName": "Wise Park Mukojima",
+      "areaId": "tokyo",
+      "location": "東京都墨田区",
+      "roomType": "1ベッドルーム アパートメント（ダブルベッド2台・布団1組）",
       "planName": "（プラン名なし）",
-      "priceTotal": 9900,
+      "priceTotal": 14500,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
         "label": "食事なし"
       },
       "cancellation": {
-        "text": "2027年2月9日までキャンセル無料（以降は宿泊料金の100%）"
+        "text": "返金不可（2026年12月18日まで1回のみ日程変更可能）"
       },
       "conditions": {
-        "checkin": "2027-02-12",
-        "checkout": "2027-02-13",
+        "checkin": "2026-12-25",
+        "checkout": "2026-12-26",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/hoteruaiesu.ja.html?checkin=2027-02-12&checkout=2027-02-13&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,900 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認"
+      "planUrl": "https://www.booking.com/hotel/jp/waizupakuxiang-dao.ja.html?checkin=2026-12-25&checkout=2026-12-26&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「料金 ￥9,000 ＋税・手数料（￥5,500）」と表示され、大人4名・1部屋の税込総額14,500円を確認"
     },
     {
-      "id": "nice-hostel-kameari-20270219",
-      "hotelName": "ナイスホステル亀有",
+      "id": "friendly-hotel-business-20261225",
+      "hotelName": "Friendly Hotel Business新規ホテル",
       "areaId": "tokyo",
       "location": "東京都葛飾区",
-      "roomType": "スタンダード 4人部屋",
+      "roomType": "2ベッドルーム アパートメント（クイーンベッド2台）",
       "planName": "（プラン名なし）",
-      "priceTotal": 9790,
+      "priceTotal": 15000,
       "priceBasis": "perRoomStayTaxIncluded",
       "meal": {
         "code": "none",
         "label": "食事なし"
       },
       "cancellation": {
-        "text": "返金不可"
+        "text": "2026年12月24日までキャンセル無料（2026年12月22日まで支払い不要）"
       },
       "conditions": {
-        "checkin": "2027-02-19",
-        "checkout": "2027-02-20",
+        "checkin": "2026-12-25",
+        "checkout": "2026-12-26",
         "adults": 4,
         "rooms": 1
       },
       "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/naisuhosuterugui-you.ja.html?checkin=2027-02-19&checkout=2027-02-20&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,790 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認。料金表に「別 市税」の表示あり"
-    },
-    {
-      "id": "hotel-is-yokohama-20270219",
-      "hotelName": "HOTEL I/S",
-      "areaId": "kanagawa",
-      "location": "神奈川県横浜市中区",
-      "roomType": "4人部屋 バスタブ付",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9900,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "2027年2月16日までキャンセル無料（以降は宿泊料金の100%）"
-      },
-      "conditions": {
-        "checkin": "2027-02-19",
-        "checkout": "2027-02-20",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/hoteruaiesu.ja.html?checkin=2027-02-19&checkout=2027-02-20&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,900 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認"
-    },
-    {
-      "id": "nice-hostel-kameari-20270226",
-      "hotelName": "ナイスホステル亀有",
-      "areaId": "tokyo",
-      "location": "東京都葛飾区",
-      "roomType": "スタンダード 4人部屋",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9790,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "返金不可"
-      },
-      "conditions": {
-        "checkin": "2027-02-26",
-        "checkout": "2027-02-27",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/naisuhosuterugui-you.ja.html?checkin=2027-02-26&checkout=2027-02-27&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:43:00+09:00",
-      "evidence": "Booking.comの宿ページの表に「料金 ￥9,790 税・手数料込」「人数:4」と表示され、大人4名・1部屋の税込総額を確認。料金表に「別 市税」の表示あり"
-    },
-    {
-      "id": "jun-resort-kujukuri-20270205",
-      "hotelName": "Jun Resort 九十九里",
-      "areaId": "chiba",
-      "location": "千葉県九十九里町",
-      "roomType": "3ベッドルーム ハウス",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9500,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "2027年1月22日までキャンセル無料（2027年1月20日まで支払い不要）"
-      },
-      "conditions": {
-        "checkin": "2027-02-05",
-        "checkout": "2027-02-06",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/jun-resort-jiu-shi-jiu-li.ja.html?checkin=2027-02-05&checkout=2027-02-06&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:46:00+09:00",
-      "evidence": "Booking.comの宿ページの料金表に「料金 ￥9,500 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約"
-    },
-    {
-      "id": "jun-resort-kujukuri-20270212",
-      "hotelName": "Jun Resort 九十九里",
-      "areaId": "chiba",
-      "location": "千葉県九十九里町",
-      "roomType": "3ベッドルーム ハウス",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9500,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "2027年1月29日までキャンセル無料（2027年1月27日まで支払い不要）"
-      },
-      "conditions": {
-        "checkin": "2027-02-12",
-        "checkout": "2027-02-13",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/jun-resort-jiu-shi-jiu-li.ja.html?checkin=2027-02-12&checkout=2027-02-13&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:46:00+09:00",
-      "evidence": "Booking.comの宿ページの料金表に「料金 ￥9,500 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約"
-    },
-    {
-      "id": "jun-resort-kujukuri-20270219",
-      "hotelName": "Jun Resort 九十九里",
-      "areaId": "chiba",
-      "location": "千葉県九十九里町",
-      "roomType": "3ベッドルーム ハウス",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9500,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "2027年2月5日までキャンセル無料（2027年2月3日まで支払い不要）"
-      },
-      "conditions": {
-        "checkin": "2027-02-19",
-        "checkout": "2027-02-20",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/jun-resort-jiu-shi-jiu-li.ja.html?checkin=2027-02-19&checkout=2027-02-20&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:46:00+09:00",
-      "evidence": "Booking.comの宿ページの料金表に「料金 ￥9,500 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約"
-    },
-    {
-      "id": "jun-resort-kujukuri-20270226",
-      "hotelName": "Jun Resort 九十九里",
-      "areaId": "chiba",
-      "location": "千葉県九十九里町",
-      "roomType": "3ベッドルーム ハウス",
-      "planName": "（プラン名なし）",
-      "priceTotal": 9500,
-      "priceBasis": "perRoomStayTaxIncluded",
-      "meal": {
-        "code": "none",
-        "label": "食事なし"
-      },
-      "cancellation": {
-        "text": "2027年2月12日までキャンセル無料（2027年2月10日まで支払い不要）"
-      },
-      "conditions": {
-        "checkin": "2027-02-26",
-        "checkout": "2027-02-27",
-        "adults": 4,
-        "rooms": 1
-      },
-      "sourceLabel": "Booking.com",
-      "planUrl": "https://www.booking.com/hotel/jp/jun-resort-jiu-shi-jiu-li.ja.html?checkin=2027-02-26&checkout=2027-02-27&group_adults=4&no_rooms=1",
-      "checkedAt": "2026-11-24T21:46:00+09:00",
-      "evidence": "Booking.comの宿ページの料金表に「料金 ￥9,500 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認。ただし即時確定ではなく「24時間以内にホストより返答があります」と表示される問い合わせ型の予約"
+      "planUrl": "https://www.booking.com/hotel/jp/friendy-business-xin-gui-hoteru2ge-yin.ja.html?checkin=2026-12-25&checkout=2026-12-26&group_adults=4&no_rooms=1",
+      "checkedAt": "2026-11-24T22:12:00+09:00",
+      "evidence": "Booking.comの料金表に「1室 ￥15,000 税・手数料込」と表示され、大人4名・1部屋の税込総額を確認"
     }
   ],
   "about": {
     "rule": "登録できるのは、予約ページで空室と「1部屋あたり・泊数合計・税込」の総額を実際に確認できた宿だけ。1人あたりの料金は登録しない。",
-    "status": "確認済みの宿は53件（2026-11-24 21:46 JST 時点。2026-11-27分6件、12月分20件、2027年1月分15件、2月分12件）",
+    "status": "確認済みの宿は68件（2026-11-24 22:12 JST 時点。2026-11-27分6件、12月分37件、2027年1月分25件）。予算は15,000円に変更され、12月・1月分は15,000円条件で再確認済み。11/27分は10,000円条件時点の確認",
     "reason": "2026-11-24 にブラウザで楽天トラベルとBooking.comを実際に開いて確認し、条件に合う6件を登録した（楽天1件・Booking.com 5件。うちJun Resort 九十九里は即時確定ではない問い合わせ型）。熱海と東京は同じ条件で1万円以内の該当がなかった（東京の最安は女性専用・会員限定のため対象外）。",
     "limit": "このアプリは予約サイトから自動で空室を取りに行かない。画面に出るのは、人が予約ページを開いて確認し、このファイルに追加した宿だけ。",
     "howToAdd": "ブラウザで予約ページを開き、宿名・部屋タイプ・1部屋総額（税込）・食事条件・キャンセル条件を確認してから entries に追加する。項目の説明は README.md の「データの追加方法」。追加後は npm run validate で検証する。"
