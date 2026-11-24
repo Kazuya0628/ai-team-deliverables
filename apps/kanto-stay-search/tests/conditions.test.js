@@ -3,9 +3,10 @@ import assert from 'node:assert/strict';
 
 import { AREA_IDS, areaLabel } from '../site/js/core/areas.js';
 import { DEFAULT_BUDGET, MAX_ADULTS, NIGHTS, ROOMS, defaultConditions, normalizeConditions } from '../site/js/core/conditions.js';
+import { addDays } from '../site/js/core/dates.js';
 
 /** チェックイン日・チェックアウト日以外は常にこの値（人数・部屋数・泊数・予算は固定） */
-const FIXED = { nights: 1, adults: 4, rooms: 1, budget: 10000 };
+const FIXED = { nights: 1, adults: 4, rooms: 1, budget: 15000 };
 
 test('エリア定義: 関東1都6県と静岡東部', () => {
   assert.deepEqual([...AREA_IDS], ['tokyo', 'kanagawa', 'chiba', 'saitama', 'ibaraki', 'tochigi', 'gunma', 'shizuoka-east']);
@@ -13,14 +14,14 @@ test('エリア定義: 関東1都6県と静岡東部', () => {
   assert.equal(areaLabel('okinawa'), '');
 });
 
-test('固定の条件は 大人4名・1部屋・1泊・1部屋総額10,000円', () => {
+test('固定の条件は 大人4名・1部屋・1泊・1部屋総額15,000円', () => {
   assert.equal(MAX_ADULTS, 4);
   assert.equal(ROOMS, 1);
   assert.equal(NIGHTS, 1);
-  assert.equal(DEFAULT_BUDGET, 10000);
+  assert.equal(DEFAULT_BUDGET, 15000);
 });
 
-test('defaultConditions: 直近の金曜・1泊・大人4名・1部屋・10,000円・全エリア', () => {
+test('defaultConditions: 直近の金曜・1泊・大人4名・1部屋・15,000円・全エリア', () => {
   assert.deepEqual(defaultConditions({ today: '2026-11-24' }), {
     checkin: '2026-11-27',
     checkout: '2026-11-28',
@@ -42,7 +43,7 @@ test('normalizeConditions: 人数・部屋数・泊数・予算は固定。入�
   const extras = [
     { adults: 2, rooms: 2, nights: 3, budget: 999999 },
     { adults: '2', budget: 'none' },
-    { adults: '4', budget: '10000' },
+    { adults: '4', budget: '15000' },
     { adults: 9, budget: -5 },
   ];
   for (const extra of extras) {
@@ -53,10 +54,27 @@ test('normalizeConditions: 人数・部屋数・泊数・予算は固定。入�
   }
 });
 
-test('normalizeConditions: 別の日付を指定するとチェックアウトはその翌日', () => {
-  const result = normalizeConditions({ checkin: '2026-12-31' });
-  assert.equal(result.value.checkin, '2026-12-31');
-  assert.equal(result.value.checkout, '2027-01-01');
+test('normalizeConditions: 金曜日を指定したときはチェックアウトはその翌日', () => {
+  const result = normalizeConditions({ checkin: '2026-12-25' });
+  assert.equal(result.value.checkin, '2026-12-25');
+  assert.equal(result.value.checkout, '2026-12-26');
+});
+
+test('normalizeConditions: 金曜日以外のチェックインは、以降で最も近い金曜日に補正する', () => {
+  // 宿データは金曜チェックイン分しかないため
+  const cases = [
+    { checkin: '2026-11-24', expected: '2026-11-27', note: '火曜は3日後の金曜' },
+    { checkin: '2026-11-26', expected: '2026-11-27', note: '木曜は翌日の金曜' },
+    { checkin: '2026-11-28', expected: '2026-12-04', note: '土曜は翌週の金曜' },
+    { checkin: '2026-12-31', expected: '2027-01-01', note: '年またぎ' },
+    { checkin: ' 2026-11-24 ', expected: '2026-11-27', note: '前後の空白があっても補正' },
+  ];
+  for (const { checkin, expected, note } of cases) {
+    const result = normalizeConditions({ checkin });
+    assert.equal(result.ok, true, note);
+    assert.equal(result.value.checkin, expected, note);
+    assert.equal(result.value.checkout, addDays(expected, 1), `${note}（チェックアウトは補正後の翌日）`);
+  }
 });
 
 test('normalizeConditions: 日付の前後の空白を除き、エリアは定義順に並ぶ', () => {

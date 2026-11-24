@@ -1,9 +1,9 @@
 {
   "name": "kanto-stay-search",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "関東圏の金曜1泊・大人4名・1部屋・1部屋総額10,000円以下で泊まれる宿を、空室を確認できたものだけ一覧にする静的Webアプリ",
+  "description": "関東圏の金曜1泊・大人4名・1部屋・1部屋総額15,000円以下で泊まれる宿を、空室を確認できたものだけ一覧にする静的Webアプリ",
   "scripts": {
     "test": "node --test tests/*.test.js",
     "validate": "node tools/validate-data.js",

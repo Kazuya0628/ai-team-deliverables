@@ -12,6 +12,7 @@ import {
   nowJstIso,
   todayJst,
   upcomingFridays,
+  weekdayIndex,
   weekdayJa,
 } from '../site/js/core/dates.js';
 
@@ -69,6 +70,17 @@ test('weekdayJa / isFriday', () => {
   assert.equal(weekdayJa('2026-11-22'), '日');
   assert.equal(isFriday('2026-11-27'), true);
   assert.equal(isFriday('2026-11-28'), false);
+});
+
+test('weekdayIndex: 0=日曜 … 5=金曜 … 6=土曜', () => {
+  assert.equal(weekdayIndex('2026-11-22'), 0, '日');
+  assert.equal(weekdayIndex('2026-11-23'), 1, '月');
+  assert.equal(weekdayIndex('2026-11-24'), 2, '火');
+  assert.equal(weekdayIndex('2026-11-25'), 3, '水');
+  assert.equal(weekdayIndex('2026-11-26'), 4, '木');
+  assert.equal(weekdayIndex('2026-11-27'), 5, '金');
+  assert.equal(weekdayIndex('2026-11-28'), 6, '土');
+  assert.throws(() => weekdayIndex('2026-02-30'), TypeError);
 });
 
 test('nextFriday: 火曜日からは3日後の金曜', () => {

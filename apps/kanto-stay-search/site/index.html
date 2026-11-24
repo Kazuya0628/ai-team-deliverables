@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>関東 金曜1泊の宿さがし｜1部屋総額で比べる</title>
-  <meta name="description" content="関東圏（東京・神奈川・千葉・埼玉・茨城・栃木・群馬・静岡東部）で、金曜1泊・大人4名・1部屋あたり総額10,000円以下で泊まれる宿を、空室を確認できたものだけ一覧にします。">
+  <meta name="description" content="関東圏（東京・神奈川・千葉・埼玉・茨城・栃木・群馬・静岡東部）で、金曜1泊・大人4名・1部屋あたり総額15,000円以下で泊まれる宿を、空室を確認できたものだけ一覧にします。">
   <link rel="stylesheet" href="./assets/app.css">
   <script type="module" src="./assets/app.js"></script>
 </head>
@@ -26,17 +26,17 @@
       <h2 id="conditions-title" class="panel__title">条件</h2>
       <form id="condition-form" class="conditions__form" autocomplete="off">
         <div class="field field--date">
-          <label class="field__label" for="date-input">チェックイン日（1泊）</label>
-          <div class="field__control">
-            <input class="input" type="date" id="date-input" name="checkin" required>
-            <span class="field__hint" id="weekday-note"></span>
-          </div>
+          <p class="field__label" id="date-field-label">チェックイン日（1泊・金曜日だけ選べます）</p>
+          <input type="date" id="date-input" name="checkin" hidden tabindex="-1" aria-hidden="true">
+          <div class="calendar" id="calendar" role="group" aria-labelledby="date-field-label"></div>
+          <span class="field__hint" id="weekday-note"></span>
+          <p class="field__hint field__hint--notice" id="checkin-notice" role="status" hidden></p>
           <div class="quick-dates" id="quick-dates" role="group" aria-label="直近の金曜日を選ぶ"></div>
         </div>
 
         <div class="field field--fixed">
           <p class="field__label" id="fixed-conditions-label">固定条件</p>
-          <p class="fixed-conditions" id="fixed-conditions" aria-labelledby="fixed-conditions-label">大人4名・1部屋・1泊・1部屋総額¥10,000以下（税込）</p>
+          <p class="fixed-conditions" id="fixed-conditions" aria-labelledby="fixed-conditions-label">大人4名・1部屋・1泊・1部屋総額¥15,000以下（税込）</p>
           <p class="field__hint">人数・部屋数・予算は変更できません。この条件で予約ページの空室を確認できた宿だけを表示します。</p>
         </div>
 

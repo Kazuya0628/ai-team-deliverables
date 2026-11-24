@@ -39,14 +39,14 @@ function makeEntry(overrides = {}) {
 
 const COND = defaultConditions({ today: TODAY });
 
-test('準備: 既定の条件は 2026-11-27 金曜・1泊・大人4名・1部屋・10,000円・全エリア', () => {
+test('準備: 既定の条件は 2026-11-27 金曜・1泊・大人4名・1部屋・15,000円・全エリア', () => {
   assert.deepEqual(COND, {
     checkin: '2026-11-27',
     checkout: '2026-11-28',
     nights: 1,
     adults: 4,
     rooms: 1,
-    budget: 10000,
+    budget: 15000,
     areaIds: [...AREA_IDS],
   });
 });
@@ -140,15 +140,17 @@ test('matchesConditions: 日付・人数・部屋数が完全に一致した場�
 test('selectStays: 条件に合うものだけを安い順に返す', () => {
   const entries = [
     makeEntry({ id: 'a', priceTotal: 9800 }),
-    makeEntry({ id: 'b', priceTotal: 12000 }),
+    makeEntry({ id: 'b', priceTotal: 18000 }),
     makeEntry({ id: 'c', priceTotal: 5500, conditions: { checkin: '2026-11-27', checkout: '2026-11-28', adults: 2, rooms: 1 } }),
     makeEntry({ id: 'd', priceTotal: 6000, conditions: { checkin: '2026-12-04', checkout: '2026-12-05', adults: 4, rooms: 1 } }),
     makeEntry({ id: 'e', priceTotal: 7000, areaId: 'tokyo', location: '東京都台東区' }),
+    makeEntry({ id: 'f', priceTotal: 15000 }),
   ];
-  assert.deepEqual(selectStays(entries, COND, { today: TODAY }).map((e) => e.id), ['e', 'a'], '11/27・4名・全エリア・10,000円以内・安い順');
-  assert.deepEqual(selectStays(entries, { ...COND, budget: null }, { today: TODAY }).map((e) => e.id), ['e', 'a', 'b'], '上限なし');
-  assert.deepEqual(selectStays(entries, { ...COND, budget: 20000 }, { today: TODAY }).map((e) => e.id), ['e', 'a', 'b']);
-  assert.deepEqual(selectStays(entries, { ...COND, budget: 7000 }, { today: TODAY }).map((e) => e.id), ['e'], '予算と同額は含める');
+  assert.deepEqual(selectStays(entries, COND, { today: TODAY }).map((e) => e.id), ['e', 'a', 'f'], '11/27・4名・全エリア・15,000円以内・安い順');
+  assert.deepEqual(selectStays(entries, { ...COND, budget: null }, { today: TODAY }).map((e) => e.id), ['e', 'a', 'f', 'b'], '上限なし');
+  assert.deepEqual(selectStays(entries, { ...COND, budget: 20000 }, { today: TODAY }).map((e) => e.id), ['e', 'a', 'f', 'b']);
+  assert.deepEqual(selectStays(entries, { ...COND, budget: 15000 }, { today: TODAY }).map((e) => e.id), ['e', 'a', 'f'], '予算と同額は含める');
+  assert.deepEqual(selectStays(entries, { ...COND, budget: 7000 }, { today: TODAY }).map((e) => e.id), ['e'], '上限が下がれば外れる');
   assert.deepEqual(selectStays(entries, { ...COND, areaIds: ['tokyo'] }, { today: TODAY }).map((e) => e.id), ['e']);
   assert.deepEqual(selectStays(entries, { ...COND, adults: 2 }, { today: TODAY }).map((e) => e.id), ['c']);
   assert.deepEqual(

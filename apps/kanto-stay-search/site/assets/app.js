@@ -4,12 +4,15 @@
  */
 import { AREAS, AREA_IDS, areaLabel } from '../js/core/areas.js';
 import { defaultConditions, normalizeConditions } from '../js/core/conditions.js';
-import { formatJpDate, formatJpDateTime, isFriday, isValidDate, todayJst, upcomingFridays } from '../js/core/dates.js';
+import { addDays, formatJpDate, formatJpDateTime, isFriday, isValidDate, todayJst, upcomingFridays, weekdayIndex } from '../js/core/dates.js';
 import { buildSearchLinks, normalizeSources } from '../js/core/links.js';
 import { STALE_HOURS, freshness, selectStays, validateDataset } from '../js/core/stays.js';
 
 /** 「金曜日を選ぶ」ボタンの数（週） */
 const QUICK_DATE_COUNT = 6;
+
+/** カレンダーの曜日見出し（日曜始まり） */
+const CALENDAR_WEEKDAYS_JA = ['日', '月', '火', '水', '木', '金', '土'];
 
 /** 外部サイトリンクの種類ごとの表示文言 */
 const MODE_TEXT = {
@@ -33,6 +36,9 @@ const state = {
   /** データ読み込みに失敗したときのエラー */
   loadError: null,
 };
+
+/** カレンダーに表示中の月（'YYYY-MM'） */
+let calendarMonth = null;
 
 /* ---------- 小さな部品 ---------- */
 
@@ -111,19 +117,110 @@ function updateQuickDates(current) {
 
 function updateDateNote(dateStr) {
   const note = byId('weekday-note');
-  if (!isValidDate(dateStr)) {
-    note.textContent = '';
-  } else {
-    note.textContent = isFriday(dateStr) ? '金曜日チェックイン' : '金曜日ではありません';
+  note.textContent = isValidDate(dateStr) ? `選択中：${formatJpDate(dateStr)}・金曜日チェックイン` : '';
+}
+
+/* ---------- チェックイン日のカレンダー ---------- */
+
+/** 宿データは金曜チェックイン分しかないため、カレンダーで選べるのは「今日以降の金曜日」だけ。それ以外のマスはグレーで押せない */
+
+/** 'YYYY-MM' を delta か月ずらす */
+function shiftMonth(month, delta) {
+  const [y, m] = month.split('-').map(Number);
+  const dt = new Date(Date.UTC(y, m - 1 + delta, 1));
+  return `${String(dt.getUTCFullYear()).padStart(4, '0')}-${String(dt.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
+/** 'YYYY-MM-DD' → 'YYYY-MM' */
+function monthOf(dateStr) {
+  return dateStr.slice(0, 7);
+}
+
+/** カレンダーの枠（見出し・曜日・日付の入れ物）を1回だけ組み立てる。日付マスは renderCalendar が毎回作り直す */
+function buildCalendar() {
+  const container = byId('calendar');
+  container.append(
+    el('div', { class: 'calendar__head' }, [
+      el('button', { type: 'button', class: 'calendar__nav', id: 'calendar-nav-prev', 'data-nav': 'prev', 'aria-label': '前の月へ', text: '‹' }),
+      el('span', { class: 'calendar__title', id: 'calendar-title', 'aria-live': 'polite' }),
+      el('button', { type: 'button', class: 'calendar__nav', id: 'calendar-nav-next', 'data-nav': 'next', 'aria-label': '次の月へ', text: '›' }),
+    ]),
+    el('div', { class: 'calendar__weekdays', 'aria-hidden': 'true' }, CALENDAR_WEEKDAYS_JA.map((name, index) =>
+      el('span', { class: `calendar__wd${index === 5 ? ' calendar__wd--friday' : ''}`, text: name }))),
+    el('div', { class: 'calendar__grid', id: 'calendar-grid' }),
+  );
+  container.addEventListener('click', (event) => {
+    const target = event.target.closest('[data-nav], [data-date]');
+    if (!target) return;
+    if (target.dataset.nav === 'prev' || target.dataset.nav === 'next') {
+      calendarMonth = shiftMonth(calendarMonth, target.dataset.nav === 'prev' ? -1 : 1);
+      renderCalendar();
+      return;
+    }
+    // 金曜日の日付ボタン。押した日をチェックイン日にする
+    byId('date-input').value = target.dataset.date;
+    onConditionChange();
+  });
+}
+
+/** カレンダーに日付マスを並べる。選べるのは今日以降の金曜日だけ */
+function renderCalendar() {
+  const today = todayJst(state.now);
+  const selected = state.cond ? state.cond.checkin : '';
+  if (!calendarMonth) calendarMonth = monthOf(selected || today);
+
+  byId('calendar-title').textContent = `${calendarMonth.slice(0, 4)}年${Number(calendarMonth.slice(5, 7))}月`;
+  byId('calendar-nav-prev').disabled = calendarMonth <= monthOf(today);
+
+  const grid = byId('calendar-grid');
+  grid.replaceChildren();
+  // 1日の曜日までの空きマス
+  for (let i = 0; i < weekdayIndex(`${calendarMonth}-01`); i++) {
+    grid.append(el('span', { class: 'calendar__day calendar__day--blank', 'aria-hidden': 'true' }));
   }
+  const lastDay = Number(addDays(`${shiftMonth(calendarMonth, 1)}-01`, -1).slice(8, 10));
+  for (let day = 1; day <= lastDay; day++) {
+    const dateStr = `${calendarMonth}-${String(day).padStart(2, '0')}`;
+    if (isFriday(dateStr) && dateStr >= today) {
+      const isSelected = dateStr === selected;
+      grid.append(el('button', {
+        type: 'button',
+        class: `calendar__day calendar__day--open${isSelected ? ' calendar__day--selected' : ''}`,
+        'aria-pressed': isSelected ? 'true' : 'false',
+        'aria-label': `${formatJpDate(dateStr)}チェックイン`,
+        dataset: { date: dateStr },
+        text: String(day),
+      }));
+    } else {
+      grid.append(el('span', { class: 'calendar__day calendar__day--off', 'aria-disabled': 'true', text: String(day) }));
+    }
+  }
+}
+
+/**
+ * 金曜以外が入力されて金曜に補正されたときに画面に出す文。補正されていなければ空文字。
+ * 補正そのものは normalizeConditions（conditions.js）が行う。
+ */
+function checkinNotice(raw, normalized) {
+  if (isValidDate(raw) && !isFriday(raw) && normalized !== raw) {
+    return `チェックインは金曜日だけ選べます。${formatJpDate(normalized)}に修正しました`;
+  }
+  return '';
+}
+
+function showCheckinNotice(text) {
+  const box = byId('checkin-notice');
+  box.textContent = text;
+  box.hidden = text === '';
 }
 
 function fillForm(cond) {
   byId('date-input').value = cond.checkin;
-  byId('date-input').min = todayJst(state.now);
+  calendarMonth = monthOf(cond.checkin);
   for (const checkbox of areaCheckboxes()) checkbox.checked = cond.areaIds.includes(checkbox.value);
   updateQuickDates(cond.checkin);
   updateDateNote(cond.checkin);
+  renderCalendar();
 }
 
 /** フォームから検索条件を読む。人数・部屋数・予算はフォームにはなく、固定（normalizeConditions が補う） */
@@ -143,7 +240,8 @@ function showConditionError(messages) {
 }
 
 function onConditionChange() {
-  const result = normalizeConditions(readForm());
+  const raw = readForm();
+  const result = normalizeConditions(raw);
   if (!result.ok) {
     showConditionError(result.errors);
     return;
@@ -152,6 +250,9 @@ function onConditionChange() {
   state.cond = result.value;
   updateQuickDates(result.value.checkin);
   updateDateNote(result.value.checkin);
+  showCheckinNotice(checkinNotice(raw.checkin, result.value.checkin));
+  calendarMonth = monthOf(result.value.checkin);
+  renderCalendar();
   writeConditionsToLocation(result.value);
   render();
 }
@@ -190,6 +291,7 @@ function bindEvents() {
     state.cond = defaultConditions({ today: todayJst(state.now) });
     fillForm(state.cond);
     showConditionError([]);
+    showCheckinNotice('');
     writeConditionsToLocation(state.cond);
     render();
   });
@@ -363,13 +465,17 @@ async function init() {
   state.now = new Date();
   buildAreaCheckboxes();
   buildQuickDates();
+  buildCalendar();
 
   const defaults = defaultConditions({ today: todayJst(state.now) });
-  const normalized = normalizeConditions({ ...defaults, ...readConditionsFromLocation() });
+  const fromLocation = readConditionsFromLocation();
+  const normalized = normalizeConditions({ ...defaults, ...fromLocation });
   state.cond = normalized.ok ? normalized.value : defaults;
 
   bindEvents();
   fillForm(state.cond);
+  // URLの checkin が金曜以外だったときは、直近の金曜に補正した旨を表示する
+  showCheckinNotice(checkinNotice(fromLocation.checkin, state.cond.checkin));
   render();
 
   try {

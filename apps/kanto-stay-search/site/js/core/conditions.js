@@ -1,9 +1,9 @@
 import { AREA_IDS } from './areas.js';
-import { addDays, isValidDate, nextFriday } from './dates.js';
+import { addDays, isFriday, isValidDate, nextFriday } from './dates.js';
 
 /**
  * 人数・部屋数・泊数・予算はこのアプリで固定。
- * 宿データは「大人4名・1部屋・1部屋総額10,000円以下」で確認・取得するため、
+ * 宿データは「大人4名・1部屋・1部屋総額15,000円以下」で確認・取得するため、
  * 画面や URL で指定できるのはチェックイン日とエリアだけ（値は従来の熱海ウォッチの条件を引き継いだもの）。
  */
 
@@ -14,11 +14,11 @@ export const ROOMS = 1;
 /** 泊数（固定） */
 export const NIGHTS = 1;
 /** 1部屋あたり・泊数合計・税込の上限（円。1人あたりではない）。固定値で、画面では変更できない */
-export const DEFAULT_BUDGET = 10000;
+export const DEFAULT_BUDGET = 15000;
 
 /**
  * 検索条件の初期値を作る。
- * チェックインは today（'YYYY-MM-DD'）以降で最も近い金曜日。1泊・大人4名・1部屋・1部屋総額10,000円以下は固定。全エリア。
+ * チェックインは today（'YYYY-MM-DD'）以降で最も近い金曜日。1泊・大人4名・1部屋・1部屋総額15,000円以下は固定。全エリア。
  */
 export function defaultConditions({ today, areaIds = AREA_IDS } = {}) {
   const checkin = nextFriday(today);
@@ -37,6 +37,8 @@ export function defaultConditions({ today, areaIds = AREA_IDS } = {}) {
  * 検索条件を検証して正規化する。
  * 入力はフォームや URL パラメータ由来の文字列でもよい。
  * 読むのはチェックイン日（checkin）とエリア（areaIds）だけ。
+ * 宿データは金曜チェックイン分しかないため、checkin が金曜日でないときは
+ * 以降で最も近い金曜日（nextFriday と同じ）に補正する。チェックアウトは補正後の翌日。
  * 人数・部屋数・泊数・予算は固定で、入力に adults・rooms・nights・budget が含まれていても読まず、常に固定の値を返す。
  * 結果は { ok, errors, value }。ok が false のとき errors に日本語のメッセージが入る。
  */
@@ -53,13 +55,13 @@ export function normalizeConditions(input) {
     areaIds: [...AREA_IDS],
   };
 
-  // チェックイン日（チェックアウト日は常にその翌日）
+  // チェックイン日（金曜日以外は直近の金曜日に補正。チェックアウト日は補正後の翌日）
   const checkin = typeof src.checkin === 'string' ? src.checkin.trim() : '';
   if (!isValidDate(checkin)) {
     errors.push('チェックイン日を正しい日付で指定してください');
   } else {
-    value.checkin = checkin;
-    value.checkout = addDays(checkin, NIGHTS);
+    value.checkin = isFriday(checkin) ? checkin : nextFriday(checkin);
+    value.checkout = addDays(value.checkin, NIGHTS);
   }
 
   // 大人人数・部屋数・泊数・予算は固定（上の value のとおり。入力は読まない）

@@ -89,6 +89,11 @@ export function isFriday(dateStr) {
   return toUtc(dateStr).getUTCDay() === 5;
 }
 
+/** 曜日を0〜6の整数で返す（0=日曜、5=金曜、6=土曜）。カレンダーのマスの並びなどに使う */
+export function weekdayIndex(dateStr) {
+  return toUtc(dateStr).getUTCDay();
+}
+
 /**
  * from 以降で最も近い金曜日を返す。
  * inclusive が true なら from 自身が金曜のとき from を返す（false なら翌週の金曜）。

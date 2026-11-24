@@ -226,6 +226,112 @@ a {
   font-weight: 700;
 }
 
+/* チェックイン日のカレンダー。金曜日だけ選べて、金曜以外と過去の日付はグレーで選べない */
+.calendar {
+  max-width: 360px;
+}
+
+.calendar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.calendar__title {
+  font-weight: 700;
+}
+
+.calendar__nav {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 4px 10px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.calendar__nav:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.calendar__nav:disabled {
+  color: var(--muted);
+  opacity: 0.5;
+  cursor: default;
+}
+
+.calendar__weekdays,
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar__weekdays {
+  margin-top: 8px;
+}
+
+.calendar__wd {
+  padding: 2px 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.calendar__wd--friday {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+button.calendar__day--open {
+  padding: 0;
+  background: var(--panel);
+  color: var(--accent-strong);
+  border: 1px solid var(--line);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.calendar__day--open:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+button.calendar__day--selected,
+button.calendar__day--selected:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* 金曜日以外・過去の日付。グレー表示で選べないことを示す */
+.calendar__day--off {
+  color: var(--muted);
+  opacity: 0.45;
+  user-select: none;
+}
+
+.field__hint--notice {
+  color: var(--warn-text);
+  font-weight: 700;
+}
+
 .areas {
   display: flex;
   flex-wrap: wrap;
