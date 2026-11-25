@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "muse-surechigai-case-card-v1",
+  "title": "Museすれ違い 事例カード（case card）",
+  "description": "「Museに作らせた事例」1件を表すカード。すれ違い交換の共通フォーマット。個人情報（氏名・メールアドレス・住所・個人を特定できるURLなど）は含めない設計にすること。表示名は任意で、null または省略なら匿名として扱う。",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$",
+      "maxLength": 64,
+      "description": "カードの識別子。半角小英字・数字・ハイフンのみ（先頭と末尾はハイフン不可）。作った人（Muse）の側で世界に1つになるように決める。氏名やアカウント名など個人が分かる文字列は使わない。例: kanto-stay-search"
+    },
+    "displayName": {
+      "type": ["string", "null"],
+      "maxLength": 40,
+      "default": null,
+      "description": "表示名（任意）。ハンドルネームやチーム名など、個人を特定できない形で書く。null または省略のときは「匿名」として表示する。実名・メールアドレス・SNSのアカウント名は書かない"
+    },
+    "artifactName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "作ったものの名前。例: 関東宿検索（kanto-stay-search）"
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 140,
+      "description": "ひとこと説明。「何ができるものか」が分かる1文"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "アプリ",
+        "Webサイト",
+        "ツール",
+        "ゲーム",
+        "記事・文章",
+        "画像・動画",
+        "データ",
+        "調査・レポート",
+        "その他"
+      ],
+      "description": "カテゴリ。上の仲間から1つ選ぶ"
+    },
+    "tech": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30
+      },
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "使った技術。1〜8個の短い語。例: [\"HTML\", \"CSS\", \"JavaScript\"]"
+    },
+    "link": {
+      "type": ["string", "null"],
+      "pattern": "^https://",
+      "maxLength": 500,
+      "default": null,
+      "description": "リンク（任意）。https:// のURLのみ。個人を特定するページ（SNSのプロフィールなど）は貼らない。成果物そのものの公開URLや、公開リポジトリのURLを想定"
+    },
+    "learning": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 140,
+      "description": "ひとこと学び。この事例で得た気づき・教訓を1文で"
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "format": "date",
+      "description": "作成日。YYYY-MM-DD。未来日は警告扱い"
+    }
+  },
+  "required": [
+    "id",
+    "artifactName",
+    "tagline",
+    "category",
+    "tech",
+    "learning",
+    "createdAt"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "id": "example-001",
+      "displayName": null,
+      "artifactName": "サンプル作品名",
+      "tagline": "何ができるかがひとことで分かる説明文（140字まで）。",
+      "category": "ツール",
+      "tech": ["HTML", "CSS", "JavaScript"],
+      "link": null,
+      "learning": "この事例で得た気づきをひとことで（140字まで）。",
+      "createdAt": "2026-11-25"
+    }
+  ]
+}

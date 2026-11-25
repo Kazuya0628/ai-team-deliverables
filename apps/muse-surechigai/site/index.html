@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>muse-surechigai — すれ違い事例交換（試作 v0.1.0）</title>
+  <meta name="description" content="他人のMuseに作らせた「事例」を、DSのすれ違い通信のように交換する試作。自分のカードをJSONで書き出して相手に渡し、相手のカードJSONを読み込むと「すれ違い成立」。">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="logo"><span aria-hidden="true">🛰️</span> muse-surechigai <span class="version">v0.1.0</span></p>
+      <h1>すれ違い事例交換</h1>
+      <p class="lead">
+        Museに作らせた「事例」を、ニンテンドーDSのすれ違い通信のように交換する試作です。
+        自分のカードをJSONで書き出して相手に渡し、相手のカードJSONを読み込むと<strong>「すれ違い成立」</strong>。
+        集まったカードはプラザに並びます。
+      </p>
+      <p id="boot-error" class="boot-error" role="alert" hidden></p>
+    </div>
+  </header>
+
+  <nav class="tabs-bar" aria-label="画面の切り替え">
+    <div class="wrap tabs" role="tablist">
+      <button class="tab" id="tab-btn-mine" role="tab" aria-selected="true" aria-controls="panel-mine">
+        わたしのカード <span class="tab-count" id="count-mine">0</span>
+      </button>
+      <button class="tab" id="tab-btn-plaza" role="tab" aria-selected="false" aria-controls="panel-plaza">
+        プラザ <span class="tab-count" id="count-plaza">0</span>
+      </button>
+      <button class="tab" id="tab-btn-exchange" role="tab" aria-selected="false" aria-controls="panel-exchange">
+        すれ違い
+      </button>
+      <button class="tab" id="tab-btn-history" role="tab" aria-selected="false" aria-controls="panel-history">
+        履歴 <span class="tab-count" id="count-history">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- わたしのカード -->
+    <section id="panel-mine" class="panel" role="tabpanel" aria-labelledby="tab-btn-mine" tabindex="0">
+      <h2>わたしのカード</h2>
+      <p class="section-lead">
+        このサイトの持ち主がMuseに作らせた実績のカードです。アプリ台帳（APPS.md）と
+        <code>apps/kanto-stay-search</code> の内容から作りました。「すれ違い」タブから書き出して相手に渡せます。
+      </p>
+      <div id="mine-list" class="card-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- プラザ -->
+    <section id="panel-plaza" class="panel" role="tabpanel" aria-labelledby="tab-btn-plaza" tabindex="0" hidden>
+      <h2>プラザ <span class="h2-note">すれ違いで集まったカードの広場</span></h2>
+      <p class="section-lead">
+        自分のカードと、すれ違いで受け取ったカードが並びます。サンプルのカードは
+        <span class="badge badge-sample">サンプル</span> バッジ付きで、架空のものです。
+      </p>
+      <div class="plaza-controls">
+        <label for="plaza-filter">カテゴリで絞り込み:</label>
+        <select id="plaza-filter"></select>
+        <span class="legend">
+          <span class="badge badge-mine">自分</span>
+          <span class="badge badge-got">ゲット</span>
+          <span class="badge badge-sample">サンプル</span>
+        </span>
+      </div>
+      <div id="plaza-list" class="card-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- すれ違い -->
+    <section id="panel-exchange" class="panel" role="tabpanel" aria-labelledby="tab-btn-exchange" tabindex="0" hidden>
+      <h2>すれ違い</h2>
+      <p class="section-lead">
+        ①で自分のカードを書き出して相手に渡し、②で相手のカードを受け取ります。
+        受け取りに成功すると<strong>すれ違い成立</strong>で、カードがプラザと履歴に追加されます。
+      </p>
+      <div class="exchange-grid">
+        <div class="sub-panel">
+          <h3><span class="step">①</span> 書き出す（カードを渡す側）</h3>
+          <p>「わたしのカード」を1ファイルのJSONパックにしてダウンロードします。このファイルをそのまま相手に渡してください。出す情報はカードに書かれた内容だけです。</p>
+          <button id="export-btn" class="btn btn-primary">自分のカードをJSONで書き出す</button>
+          <p class="hint" id="export-hint" role="status"></p>
+        </div>
+        <div class="sub-panel">
+          <h3><span class="step">②</span> 読み込む（カードを受け取る側）</h3>
+          <p>相手から渡されたJSONファイルを読み込みます。形式を検証して、新しいカードだけを取り込みます。</p>
+          <div class="file-row">
+            <input type="file" id="import-file" accept=".json,application/json,.txt">
+            <button id="import-file-btn" class="btn btn-primary">ファイルを読み込む</button>
+          </div>
+          <details class="paste-box">
+            <summary>ファイルではなくテキストで貼り付ける</summary>
+            <textarea id="import-text" rows="8" placeholder="相手のカードJSONを貼り付けてください" spellcheck="false"></textarea>
+            <button id="import-text-btn" class="btn">貼り付けたJSONを読み込む</button>
+          </details>
+          <div id="import-result" role="status" aria-live="polite"></div>
+        </div>
+        <div class="sub-panel sub-panel-sample">
+          <h3><span class="step">体験</span> サンプルとすれ違い</h3>
+          <p>
+            相手がいないときでも流れを確かめられるよう、<strong>サンプルの相手カード（架空・2枚）を同梱</strong>しています。
+            読み込む代わりに、このボタンでサンプルとのすれ違いを体験できます（「サンプル」バッジ付きで記録されます）。
+          </p>
+          <button id="sample-import-btn" class="btn">サンプルのカードとすれ違いを体験</button>
+        </div>
+      </div>
+      <p class="exchange-status" id="exchange-status" role="status"></p>
+    </section>
+
+    <!-- 履歴 -->
+    <section id="panel-history" class="panel" role="tabpanel" aria-labelledby="tab-btn-history" tabindex="0" hidden>
+      <h2>すれ違い履歴</h2>
+      <p class="section-lead">いつ・誰のカードとすれ違ったかの記録です。履歴と受け取ったカードは、このブラウザの中（localStorage）にだけ保存されます。</p>
+      <ol id="history-list" class="history-list" aria-live="polite"></ol>
+      <p class="danger-zone">
+        <button id="reset-btn" class="btn btn-danger">受け取ったカードと履歴を消す</button>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>
+        muse-surechigai v0.1.0（試作）／ 静的サイト・サーバーなし・カードは端末の中だけに保存されます。
+        カードの形式は <a href="https://github.com/Kazuya0628/ai-team-deliverables" rel="noopener">リポジトリ</a> の
+        <code>apps/muse-surechigai/schema/</code> を参照。個人情報（実名・メールアドレス・個人を特定するURL）はカードに含めない設計です。
+      </p>
+    </div>
+  </footer>
+
+  <!-- すれ違い成立のお知らせ -->
+  <div id="streetpass-banner" class="streetpass-banner" role="status" hidden>
+    <p class="sp-title">すれ違い成立！ <span aria-hidden="true">🎉</span></p>
+    <p class="sp-body" id="streetpass-body"></p>
+    <button id="streetpass-close" class="btn btn-small">閉じる</button>
+  </div>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>

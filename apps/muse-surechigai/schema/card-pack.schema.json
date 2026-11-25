@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Museすれ違い カードパック（card pack）",
+  "description": "事例カードを1ファイルで受け渡すときの入れ物（封筒）。自分のカードの書き出しにも、相手カードの受け渡しにも、この形を推奨。カード1枚だけ・カードの配列だけのファイルも、サイト側は読み込める。",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "muse-surechigai-pack",
+      "description": "ファイルの種類を示す固定値"
+    },
+    "packVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "パック形式の版。現在は 1"
+    },
+    "exportedAt": {
+      "type": "string",
+      "description": "書き出し日時。ISO 8601（例: 2026-11-25T09:00:00+09:00）。任意"
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "ひとこと注記（任意）。サンプルパックでは必ず「サンプル」「架空」の文字を含める"
+    },
+    "sample": {
+      "type": "boolean",
+      "description": "サンプル（架空のカード）パックのとき true。受け取った側の画面では「サンプル」バッジが付く"
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": { "$ref": "case-card.schema.json" },
+      "description": "事例カードの配列（1〜50件）。同じ id が重複してはいけない"
+    }
+  },
+  "required": ["format", "packVersion", "cards"],
+  "additionalProperties": false
+}

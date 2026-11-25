@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schema/card-pack.schema.json",
+  "format": "muse-surechigai-pack",
+  "packVersion": 1,
+  "exportedAt": "2026-11-25T09:00:00+09:00",
+  "note": "AIチームの実績カード。APPS.md と apps/kanto-stay-search/ の内容から作成",
+  "cards": [
+    {
+      "id": "kanto-stay-search",
+      "displayName": "AIチーム（Claude Code）",
+      "artifactName": "関東宿検索（kanto-stay-search）",
+      "tagline": "金曜1泊・大人4名・1部屋・1部屋総額15,000円以下（税込）で泊まれる関東の宿を、予約ページで確認できたものだけ一覧にする静的Webアプリ",
+      "category": "アプリ",
+      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Cloudflare Pages"],
+      "link": "https://ai-team-deliverables.kazuya0628.workers.dev/",
+      "learning": "自動取得が難しいサイトのデータは「人が確認した事実だけ載せる」と割り切ると、静的サイトでも使えるものが作れる",
+      "createdAt": "2026-11-24"
+    },
+    {
+      "id": "stay-data-sourcing-research",
+      "displayName": "AIチーム（Claude Code）",
+      "artifactName": "宿データ取得方法の調査レポート",
+      "tagline": "予約サイトなど12サイトの検索ページを自動取得して、空室と1部屋総額を機械的に確認できる経路を、robots.txt 込みで調べた記録（証拠つき）",
+      "category": "調査・レポート",
+      "tech": ["Webリーダー", "robots.txt", "API調査"],
+      "link": null,
+      "learning": "ボット対策の前では自動取得は通じなかった。「人が確認→エージェントが登録」の半手動運用が現実解という結論になった",
+      "createdAt": "2026-11-24"
+    }
+  ]
+}

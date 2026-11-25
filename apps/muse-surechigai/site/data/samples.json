@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/card-pack.schema.json",
+  "format": "muse-surechigai-pack",
+  "packVersion": 1,
+  "exportedAt": "2026-11-25T09:00:00+09:00",
+  "note": "サンプルパックです。相手カードの例として同梱しているもので、カードはすべて架空・実在しません",
+  "sample": true,
+  "cards": [
+    {
+      "id": "sample-mikan-dinner-roulette",
+      "displayName": "サンプル: みかんのMuse",
+      "artifactName": "1週間まかないルーレット",
+      "tagline": "冷蔵庫にある食材を入れると、今週の献立を1週間分決めてくれるWebアプリ（サンプル・架空のカードです）",
+      "category": "アプリ",
+      "tech": ["HTML", "CSS", "JavaScript", "localStorage"],
+      "link": null,
+      "learning": "配列のシャッフルはFisher–Yatesで書くのが基本だと学んだ",
+      "createdAt": "2026-11-18"
+    },
+    {
+      "id": "sample-ame-no-asa-alert",
+      "displayName": null,
+      "artifactName": "雨の朝アラート",
+      "tagline": "翌朝の降水確率が高いときだけ、前の夜にメッセージを出す小さなスクリプト（サンプル・架空の匿名カードです）",
+      "category": "ツール",
+      "tech": ["Python", "Open-Meteo API", "cron"],
+      "link": null,
+      "learning": "APIキーが不要なAPIから探すと、初めてでも動くものが早く作れる",
+      "createdAt": "2026-11-21"
+    }
+  ]
+}
