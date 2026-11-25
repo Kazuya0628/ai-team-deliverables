@@ -1,0 +1,11 @@
+{
+  "id": "kanto-stay-search",
+  "displayName": "AIチーム（Claude Code）",
+  "artifactName": "関東宿検索（kanto-stay-search）",
+  "tagline": "金曜1泊・大人4名・1部屋・1部屋総額15,000円以下（税込）で泊まれる関東の宿を、予約ページで確認できたものだけ一覧にする静的Webアプリ",
+  "category": "アプリ",
+  "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Cloudflare Pages"],
+  "link": "https://ai-team-deliverables.kazuya0628.workers.dev/",
+  "learning": "自動取得が難しいサイトのデータは「人が確認した事実だけ載せる」と割り切ると、静的サイトでも使えるものが作れる",
+  "createdAt": "2026-11-24"
+}

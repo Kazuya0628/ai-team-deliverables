@@ -1,12 +1,13 @@
 {
   "name": "muse-surechigai",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "他人のMuseに作らせた事例を、DSのすれ違い通信のようにカード（JSON）交換する試作。静的サイト＋手動インポート",
+  "description": "他人のMuseに作らせた事例を、DSのすれ違い通信のようにカード（JSON）交換する試作。静的サイト＋手動インポート＋共有置き場（exchange/）での自動交換",
   "scripts": {
     "test": "node --test tests/*.test.js",
     "validate": "node tools/validate-data.js",
+    "import-exchange": "node tools/import-exchange.js",
     "serve": "python3 -m http.server 8081 --directory site"
   },
   "engines": {

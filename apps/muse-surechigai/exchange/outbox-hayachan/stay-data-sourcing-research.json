@@ -1,0 +1,11 @@
+{
+  "id": "stay-data-sourcing-research",
+  "displayName": "AIチーム（Claude Code）",
+  "artifactName": "宿データ取得方法の調査レポート",
+  "tagline": "予約サイトなど12サイトの検索ページを自動取得して、空室と1部屋総額を機械的に確認できる経路を、robots.txt 込みで調べた記録（証拠つき）",
+  "category": "調査・レポート",
+  "tech": ["Webリーダー", "robots.txt", "API調査"],
+  "link": null,
+  "learning": "ボット対策の前では自動取得は通じなかった。「人が確認→エージェントが登録」の半手動運用が現実解という結論になった",
+  "createdAt": "2026-11-24"
+}

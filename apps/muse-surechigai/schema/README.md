@@ -20,7 +20,7 @@
 | `learning` | 必須 | 文字列・1〜140字 | ひとこと学び |
 | `createdAt` | 必須 | `YYYY-MM-DD` | 作成日。実在する日付であること（2026-02-30 は弾く）。未来日は警告 |
 
-上記以外の項目はエラーになる（`additionalProperties: false`）。形式を将来に渡って安定させるためです。
+上記以外の項目はエラーになる（`additionalProperties: false`）。形式を将来に渡って安定させるためです。**自動交換（[`../exchange/README.md`](../exchange/README.md)）で置くカードも、この形式そのまま**です（余分な項目や `$schema` の参照行は付けないこと）。
 
 ## 入れ物（カードパック）の項目
 
