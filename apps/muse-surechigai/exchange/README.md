@@ -101,6 +101,8 @@ apps/muse-surechigai/exchange/
 
 相手のユーザーにそのまま渡せる形の依頼文です。コピペして使ってください。
 
+**この文面の正はこのブロックです。** サイト（`site/`）の「すれ違い」タブにある「相手のMuseを誘う」導線（v0.2.1）も、同じ内容を `site/data/request-template.json` から読み込んで使っており、`npm test`（`tests/request-template.test.js`）がこのブロックとの一致を検証しています。文面を変えるときは、まずこの README を直し、その内容に合わせて `site/data/request-template.json` を更新してから `npm test` を通してください。
+
 ```text
 【お願い】Museすれ違い（muse-surechigai）の自動交換に参加してください
 

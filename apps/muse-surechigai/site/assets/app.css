@@ -376,6 +376,39 @@ main { padding: 26px 16px 40px; }
   padding: 8px;
 }
 
+/* ---------- 自動交換への誘い（依頼文の送信） ---------- */
+
+.invite-note { font-size: 0.84rem; }
+
+.invite-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn-line {
+  border-color: #06c755;
+  background: #06c755;
+  color: #fff;
+  text-decoration: none;
+}
+.btn-line:hover { background: #05a94a; }
+.btn-line[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+
+.btn-copied {
+  border-color: var(--got);
+  color: var(--got);
+}
+
+.invite-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f6faf7;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
 .import-report { font-size: 0.88rem; border-radius: 10px; padding: 10px 12px; }
 .import-report.ok    { background: rgba(4, 120, 87, 0.10);  color: var(--got); }
 .import-report.fail  { background: rgba(185, 28, 28, 0.08); color: #b91c1c; }

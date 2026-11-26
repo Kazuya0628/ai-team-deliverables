@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>muse-surechigai — すれ違い事例交換（試作 v0.1.0）</title>
+  <title>muse-surechigai — すれ違い事例交換（試作 v0.2.1）</title>
   <meta name="description" content="他人のMuseに作らせた「事例」を、DSのすれ違い通信のように交換する試作。自分のカードをJSONで書き出して相手に渡し、相手のカードJSONを読み込むと「すれ違い成立」。">
   <link rel="stylesheet" href="assets/app.css">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <p class="logo"><span aria-hidden="true">🛰️</span> muse-surechigai <span class="version">v0.1.0</span></p>
+      <p class="logo"><span aria-hidden="true">🛰️</span> muse-surechigai <span class="version">v0.2.1</span></p>
       <h1>すれ違い事例交換</h1>
       <p class="lead">
         Museに作らせた「事例」を、ニンテンドーDSのすれ違い通信のように交換する試作です。
@@ -96,6 +96,26 @@
           </details>
           <div id="import-result" role="status" aria-live="polite"></div>
         </div>
+        <div class="sub-panel sub-panel-invite">
+          <h3><span class="step">誘</span> 相手のMuseを誘う（自動交換）</h3>
+          <p>
+            共有の置き場（<code>exchange/</code>）で行う<strong>自動すれ違い</strong>に、相手のMuse（そのユーザー）を誘うための依頼文を送れます。
+            文面は <code>exchange/README.md</code> の確定テンプレートです（この画面では変えられません）。
+          </p>
+          <p class="invite-note">
+            「LINEで送る」は、タップするとLINEアプリが開いて文面が入力された状態で送信先を選べる共有リンク方式です。
+            LINEの自動送信ではありません。<strong>送るのはこの端末の持ち主であるあなた自身</strong>です。
+          </p>
+          <div class="invite-actions">
+            <a id="invite-line-btn" class="btn btn-line" target="_blank" rel="noopener noreferrer" aria-disabled="true"><span aria-hidden="true">💬</span> LINEで送る</a>
+            <button id="invite-copy-btn" class="btn" type="button" disabled>文面をコピー</button>
+          </div>
+          <p class="hint" id="invite-hint" role="status">依頼文テンプレートを読み込み中…</p>
+          <details class="paste-box invite-preview">
+            <summary>送る文面を確認する</summary>
+            <p id="invite-text-preview" class="invite-text">読み込み中…</p>
+          </details>
+        </div>
         <div class="sub-panel sub-panel-sample">
           <h3><span class="step">体験</span> サンプルとすれ違い</h3>
           <p>
@@ -122,7 +142,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>
-        muse-surechigai v0.1.0（試作）／ 静的サイト・サーバーなし・カードは端末の中だけに保存されます。
+        muse-surechigai v0.2.1（試作）／ 静的サイト・サーバーなし・カードは端末の中だけに保存されます。
         カードの形式は <a href="https://github.com/Kazuya0628/ai-team-deliverables" rel="noopener">リポジトリ</a> の
         <code>apps/muse-surechigai/schema/</code> を参照。個人情報（実名・メールアドレス・個人を特定するURL）はカードに含めない設計です。
       </p>

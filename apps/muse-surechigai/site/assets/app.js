@@ -1,4 +1,4 @@
-// muse-surechigai — すれ違い事例交換（試作 v0.1.0）
+// muse-surechigai — すれ違い事例交換（試作 v0.2.1）
 // 静的サイト。データは data/*.json を読み、すれ違いで受け取ったカードと履歴は
 // このブラウザの localStorage にだけ保存する。サーバーなし・ビルドなし。
 //
@@ -50,6 +50,7 @@ const state = {
   samples: [],     // data/samples.json のカード（サンプル・架空。永続しない）
   imported: [],    // すれ違いで受け取ったカード: { card, origin: 'got' | 'sample', receivedAt }
   history: [],     // すれ違いの記録: { at, source, got, skipped, names }
+  invite: null,    // 相手のMuseへの依頼文テンプレート: { prefix, text }（data/request-template.json）
   filter: 'all'
 };
 
@@ -158,11 +159,14 @@ async function boot() {
     bootError.textContent =
       `カードデータを読み込めませんでした（${e.message}）。` +
       'file:// で直接開くと動きません。アプリのフォルダで「npm run serve」をして、http://localhost:8081/ で開いてください。';
+    const inviteHint = document.getElementById('invite-hint');
+    inviteHint.textContent = 'カードデータの読み込みに失敗したため、誘い文面の機能も使えません。';
     return;
   }
   buildFilter();
   wireEvents();
   renderAll();
+  await loadInviteTemplate();
 }
 
 /* ---------- 描画 ---------- */
@@ -408,6 +412,91 @@ function importSamplePack() {
   importFromValue(buildPack(state.samples, { note: 'サンプル', sample: true, exportedAt: new Date() }), { source: 'sample' });
 }
 
+/* ---------- 自動交換への誘い（依頼文の送信） ---------- */
+// 文面は data/request-template.json（exchange/README.md の確定テンプレートと同じ内容。
+// npm test の tests/request-template.test.js が一致を検証している）。
+// LINEへの送信はユーザー自身が行う共有リンク方式（line.me/R/msg/text/）。自動送信のAPIは使わない。
+
+async function loadInviteTemplate() {
+  const hint = document.getElementById('invite-hint');
+  const lineBtn = document.getElementById('invite-line-btn');
+  const copyBtn = document.getElementById('invite-copy-btn');
+  const preview = document.getElementById('invite-text-preview');
+  try {
+    const data = await fetchJSON('data/request-template.json');
+    const isObj = data !== null && typeof data === 'object';
+    const linesOk = isObj && Array.isArray(data.lines) && data.lines.every((l) => typeof l === 'string');
+    if (!isObj || !linesOk ||
+      typeof data.lineSharePrefix !== 'string' || !data.lineSharePrefix.startsWith('https://')) {
+      throw new Error('ファイルの形式が違います');
+    }
+    const text = data.lines.join('\n');
+    if (text.trim().length === 0) throw new Error('文面が空です');
+    state.invite = { prefix: data.lineSharePrefix, text };
+    lineBtn.href = state.invite.prefix + encodeURIComponent(text);
+    lineBtn.setAttribute('aria-disabled', 'false');
+    copyBtn.disabled = false;
+    preview.textContent = text;
+    hint.textContent =
+      `文面は exchange/README.md 確定のテンプレート（全${text.length}字）。` +
+      '「LINEで送る」でLINEアプリが開き、文面が入力された状態で送信先を選べます。';
+  } catch (e) {
+    hint.textContent =
+      `依頼文テンプレート（data/request-template.json）を読み込めなかったため、この機能は使えません（${e.message}）。`;
+    preview.textContent = '読み込めませんでした';
+  }
+}
+
+async function copyInviteText() {
+  const hint = document.getElementById('invite-hint');
+  const copyBtn = document.getElementById('invite-copy-btn');
+  if (!state.invite) return;
+  const text = state.invite.text;
+  let ok = false;
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    } catch {
+      ok = false;
+    }
+  }
+  if (!ok) ok = copyViaExecCommand(text);
+  if (ok) {
+    hint.textContent =
+      `文面をクリップボードにコピーしました（${text.length}字）。LINEやメールにそのまま貼り付けて送れます。`;
+    copyBtn.textContent = 'コピーしました ✓';
+    copyBtn.classList.add('btn-copied');
+    setTimeout(() => {
+      copyBtn.textContent = '文面をコピー';
+      copyBtn.classList.remove('btn-copied');
+    }, 2500);
+  } else {
+    hint.textContent =
+      'クリップボードにコピーできませんでした。「送る文面を確認する」を開いて、文面を選んで手動でコピーしてください。';
+  }
+}
+
+function copyViaExecCommand(text) {
+  // navigator.clipboard が使えない環境（http のLAN配信など）のための代替
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.append(ta);
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch {
+    ok = false;
+  }
+  ta.remove();
+  return ok;
+}
+
 /* ---------- すれ違い成立バナー ---------- */
 
 let bannerTimer = null;
@@ -490,6 +579,7 @@ function wireEvents() {
   });
 
   document.getElementById('sample-import-btn').addEventListener('click', importSamplePack);
+  document.getElementById('invite-copy-btn').addEventListener('click', copyInviteText);
   document.getElementById('reset-btn').addEventListener('click', resetAll);
   document.getElementById('streetpass-close').addEventListener('click', hideStreetpassBanner);
 
